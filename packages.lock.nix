@@ -34,6 +34,11 @@
     url = "https://github.com/libass/libass/releases/download/0.17.1/libass-0.17.1.tar.xz";
     sha256 = "f0da0bbfba476c16ae3e1cfd862256d30915911f7abaa1b16ce62ee653192784";
   };
+  lua = {
+    version = "5.4.8";
+    url = "https://www.lua.org/ftp/lua-5.4.8.tar.gz";
+    sha256 = "4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae";
+  };
   libogg = {
     version = "1.3.5";
     url = "https://github.com/xiph/ogg/releases/download/v1.3.5/libogg-1.3.5.tar.gz";
