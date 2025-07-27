@@ -12,27 +12,23 @@ let
   callPackage = pkgs.lib.callPackageWith { inherit pkgs os arch; };
   nativeFile = callPackage ../../utils/native-file/default.nix { };
   crossFile = callPackage ../../utils/cross-file/default.nix { };
-  fribidi = callPackage ../mk-pkg-fribidi/default.nix { };
-  harfbuzz = callPackage ../mk-pkg-harfbuzz/default.nix { };
-  freetype = callPackage ../mk-pkg-freetype/default.nix { };
 
   pname = import ../../utils/name/package.nix name;
   src = callPackage ../../utils/fetch-tarball/default.nix {
     name = "${pname}-source-${version}";
     inherit (packageLock) url sha256;
   };
-  patchedSource = pkgs.runCommand "${pname}-patched-source-${version}" { } ''
-    cp -r ${src} src
-    export src=$PWD/src
-    chmod -R 777 $src
-
-    cd $src
-    cd -
-
-    cp ${./meson.build} $src/meson.build
-
-    cp -r $src $out
-  '';
+  patchedSource =
+    pkgs.runCommand "${pname}-patched-source-${version}"
+      {
+        nativeBuildInputs = [];
+      }
+      ''
+        cp -r ${src} src
+        export src=$PWD/src
+        chmod -R 777 $src
+        cp -r $src $out
+      '';
 in
 
 pkgs.stdenvNoCC.mkDerivation {
@@ -40,17 +36,12 @@ pkgs.stdenvNoCC.mkDerivation {
   pname = pname;
   inherit version;
   src = patchedSource;
-  dontUnpakck = true;
+  dontUnpack = true;
   enableParallelBuilding = true;
   nativeBuildInputs = [
     pkgs.meson
     pkgs.ninja
     pkgs.pkg-config
-  ];
-  buildInputs = [
-    fribidi
-    harfbuzz
-    freetype
   ];
   configurePhase = ''
     meson setup build $src \
@@ -59,11 +50,9 @@ pkgs.stdenvNoCC.mkDerivation {
       --prefix=$out
   '';
   buildPhase = ''
-    meson compile -vC build $(basename $src)
+    meson compile -vC build
   '';
   installPhase = ''
-    # manual install to preserve symlinks (meson install -C build)
-    mkdir $out
-    cp -R build/dist$out/* $out/
+    meson install -C build
   '';
 }
