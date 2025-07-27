@@ -97,7 +97,7 @@ pkgs.stdenvNoCC.mkDerivation {
       -Dlibarchive=disabled `# libarchive wrapper for reading zip files and more`
       -Dlibavdevice=disabled `# libavdevice`
       -Dlibbluray=disabled `# Bluray support`
-      -Dlua=disabled `# Lua`
+      -Dlua=enabled `# Lua`
       -Dpthread-debug=disabled `# pthread runtime debugging wrappers`
       -Drubberband=disabled `# librubberband support`
       -Dsdl2=disabled `# SDL2`
