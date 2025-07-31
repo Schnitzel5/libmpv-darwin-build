@@ -18,6 +18,15 @@ let
     name = "${pname}-source-${version}";
     inherit (packageLock) url sha256;
   };
+  patchedSource = pkgs.runCommand "${pname}-patched-source-${version}" { } ''
+    cp -r ${src} src
+    export src=$PWD/src
+    chmod -R 777 $src
+
+    cp ${./meson.build} $src/meson.build
+
+    cp -r $src $out
+  '';
 in
 
 pkgs.stdenvNoCC.mkDerivation {
