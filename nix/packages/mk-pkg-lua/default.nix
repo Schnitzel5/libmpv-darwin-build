@@ -18,24 +18,13 @@ let
     name = "${pname}-source-${version}";
     inherit (packageLock) url sha256;
   };
-  patchedSource =
-    pkgs.runCommand "${pname}-patched-source-${version}"
-      {
-        nativeBuildInputs = [];
-      }
-      ''
-        cp -r ${src} src
-        export src=$PWD/src
-        chmod -R 777 $src
-        cp -r $src $out
-      '';
 in
 
 pkgs.stdenvNoCC.mkDerivation {
   name = "${pname}-${os}-${arch}-${version}";
   pname = pname;
   inherit version;
-  src = patchedSource;
+  src = src;
   dontUnpack = true;
   enableParallelBuilding = true;
   nativeBuildInputs = [
