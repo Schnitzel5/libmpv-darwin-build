@@ -31,7 +31,6 @@ src = [
   'loslib.c',
   'lstrlib.c',
   'ltablib.c',
-  'lutf8lib.c',
   'loadlib.c',
   'linit.c',
 ]
