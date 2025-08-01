@@ -23,6 +23,10 @@ let
     export src=$PWD/src
     chmod -R 777 $src
 
+    cd $src
+    patch loslib.c <${../../../patches/lua-undefined-system.patch}
+    cd -
+
     cp ${./meson.build} $src/meson.build
 
     cp -r $src $out
