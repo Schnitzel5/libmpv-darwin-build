@@ -34,6 +34,10 @@ if is_posix
     '-DLUA_USE_POSIX',
     language: 'c',
   )
+  add_project_arguments(
+    '-DLUA_USE_IOS',
+    language: 'c',
+  )
 elif get_option('default_library') != 'static' and host_machine.system() == 'windows'
   add_project_arguments(
     '-DLUA_BUILD_AS_DLL',
