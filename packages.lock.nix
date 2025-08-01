@@ -35,9 +35,9 @@
     sha256 = "f0da0bbfba476c16ae3e1cfd862256d30915911f7abaa1b16ce62ee653192784";
   };
   lua = {
-    version = "5.4.8";
-    url = "https://www.lua.org/ftp/lua-5.4.8.tar.gz";
-    sha256 = "4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae";
+    version = "5.2.0";
+    url = "https://www.lua.org/ftp/lua-5.2.0.tar.gz";
+    sha256 = "cabe379465aa8e388988073d59b69e76ba0025429d2c1da80821a252cdf6be0d";
   };
   libogg = {
     version = "1.3.5";
