@@ -33,7 +33,7 @@ pkgs.stdenvNoCC.mkDerivation {
   name = "${pname}-${os}-${arch}-${version}";
   pname = pname;
   inherit version;
-  src = src;
+  src = patchedSource;
   dontUnpack = true;
   enableParallelBuilding = true;
   nativeBuildInputs = [
