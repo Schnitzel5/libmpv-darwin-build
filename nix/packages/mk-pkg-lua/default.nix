@@ -24,7 +24,6 @@ let
     chmod -R 777 $src
 
     cp ${./meson.build} $src/meson.build
-    cp ${./meson.options} $src/meson.options
 
     cp -r $src $out
   '';
