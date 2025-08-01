@@ -20,6 +20,7 @@ let
   };
   patchedSource = pkgs.runCommand "${pname}-patched-source-${version}" { } ''
     cp -r ${src} src
+    mv src/src/* src
     export src=$PWD/src
     chmod -R 777 $src
 
