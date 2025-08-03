@@ -35,7 +35,7 @@ src = [
   'linit.c',
 ]
 
-lualib = shared_library('lua', src)
+lualib = shared_library('lua', src, install: true)
 
 executable('luai', 'lua.c',
   link_with : lualib)
